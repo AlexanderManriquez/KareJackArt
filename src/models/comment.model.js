@@ -14,6 +14,7 @@ const Comment = sequelize.define('Comment', {
   name: {
     type: DataTypes.STRING(100),
     allowNull: false,
+    validate: { notEmpty: true },
   }, 
   email: {
     type: DataTypes.STRING(150),

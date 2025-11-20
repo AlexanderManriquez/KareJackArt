@@ -1,3 +1,4 @@
+const { sequelize } = require('../config/database');
 const { DataTypes } = require("sequelize");
 
 const Artwork = sequelize.define('Artwork', {
@@ -9,6 +10,7 @@ const Artwork = sequelize.define('Artwork', {
   title: {
     type: DataTypes.STRING(200),
     allowNull: false,
+    validate: { notEmpty: true },
   },
   description: {
     type: DataTypes.TEXT,
@@ -29,6 +31,10 @@ const Artwork = sequelize.define('Artwork', {
   imageUrl: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      isUrl: true,
+      notEmpty: true,
+    }
   },
   isFeatured: {
     type: DataTypes.BOOLEAN,

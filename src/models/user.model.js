@@ -11,6 +11,7 @@ const User = sequelize.define('User', {
   name: {
     type: DataTypes.STRING(100),
     allowNull: false,
+    validate: { notEmpty: true },
   },
   email: {
     type: DataTypes.STRING(150),
@@ -36,16 +37,14 @@ const User = sequelize.define('User', {
     beforeCreate: async (user) => {
       const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
       if (user.password) {
-        const hash = await bcrypt.hash(user.password, saltRounds);
-        user.password = hash;
+        user.password = await bcrypt.hash(user.password, saltRounds);
       }
     },
     beforeUpdate: async (user) => {
-      if (user.changed('password')) {
-        const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
-        const hash = await bcrypt.hash(user.password, saltRounds);
-        user.password = hash;
-      }
+    const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
+    if (user.changed('password')) {
+      user.password = await bcrypt.hash(user.password, saltRounds);
+    }
     },
   },    
 });
