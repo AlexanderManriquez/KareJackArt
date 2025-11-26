@@ -28,6 +28,14 @@ const Comment = sequelize.define('Comment', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  approved: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  ipAddress: {
+    type: DataTypes.STRING(45),
+    allowNull: true,
+  },
 }, {
   tableName: 'comments',
   timestamps: true,
