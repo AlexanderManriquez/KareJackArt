@@ -1,25 +1,28 @@
-import jwt from 'jsonwebtoken';
-import { User } from '../models/index';
+const jwt = require('jsonwebtoken');
+const { User } = require('../models');
 
-export const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'No autorizado. No se proporcionó token de autenticación' });
+  }
+
+  const token = authHeader.split(' ')[1];
+
   try {
-    const token = req.headers.authorization?.split(' ')[1];
-
-    if (!token) {
-      return res.status(401).json({ error: 'Token no proporcionado' });
-    }
-
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
 
     const user = await User.findByPk(decoded.id);
-
     if (!user) {
-      return res.status(401).json({ error: 'Usuario no encontrado' });
+      return res.status(401).json({ error: 'No autorizado. Usuario no encontrado' });
     }
 
-    req.user = user;
     next();
   } catch (error) {
-    res.status(401).json({ error: 'Token inválido' });
+    return res.status(401).json({ error: 'No autorizado. Token inválido o expirado' });
   }
 };
+
+module.exports = authMiddleware;

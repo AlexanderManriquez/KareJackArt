@@ -25,7 +25,7 @@ class AuthService {
   }
 
   static async verifyEmail(token) {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { verificationToken: token } });
     if (!user) throw new Error('Token inválido');
 
     user.isVerified = true;
@@ -58,7 +58,7 @@ class AuthService {
     const resetToken = crypto.randomBytes(32).toString('hex');
 
     user.resetPasswordToken = resetToken;
-    user.resetPasswordExpires = Date.now() + 3600000; //1 Hora
+    user.resetPasswordExpires = new Date(Date.now() + 3600000); //1 Hora
     await user.save();
 
     return resetToken;
@@ -73,7 +73,7 @@ class AuthService {
 
     if (!user) throw new Error('Token inválido');
 
-    if (Date.now() > user.reserPasswordExpires) {
+    if (new Date() > user.reserPasswordExpires) {
       throw new Error('Token de restablecimiento de contraseña expirado');
     }
 

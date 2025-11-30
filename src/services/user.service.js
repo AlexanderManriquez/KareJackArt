@@ -9,7 +9,7 @@ class UserService {
     return User.findByPk(id);
   }
 
-  static async getUserByEmail(email) {
+  static async findByEmail(email) {
     return await User.findOne({where: { email }});
   }
 
