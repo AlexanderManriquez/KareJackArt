@@ -39,7 +39,7 @@ class AuthService {
     const user = await User.findOne({ where: { email } });
     if (!user) throw new Error('Usuario no encontrado');
 
-    const valid = await user.verifyPaddword(password);
+    const valid = await user.verifyPassword(password);
     if (!valid) throw new Error('Credenciales inválidas');
 
     if (!user.isVerified) {
@@ -73,7 +73,7 @@ class AuthService {
 
     if (!user) throw new Error('Token inválido');
 
-    if (new Date() > user.reserPasswordExpires) {
+    if (new Date() > user.resetPasswordExpires) {
       throw new Error('Token de restablecimiento de contraseña expirado');
     }
 

@@ -13,11 +13,20 @@ class UserService {
     return await User.findOne({where: { email }});
   }
 
+  // Alias to keep API consistent
+  static async getUserByEmail(email) {
+    return this.findByEmail(email);
+  }
+
+  static async getAll() {
+    return await User.findAll({ order: [['createdAt', 'DESC']] });
+  }
+
   static async updateUser(id, updates) {
-    return await User.update(updates, {
+    await User.update(updates, {
       where: { id },
-      returning: true,
     });
+    return await User.findByPk(id);
   }
   
   static async deleteUser(id) {

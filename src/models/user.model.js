@@ -69,4 +69,14 @@ User.prototype.verifyPassword = async function (plainText) {
   return bcrypt.compare(plainText, this.password);
 }
 
+// Remove sensitive fields when converting to JSON (e.g., sending responses)
+User.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get());
+  delete values.password;
+  delete values.verificationToken;
+  delete values.resetPasswordToken;
+  delete values.resetPasswordExpires;
+  return values;
+}
+
 module.exports = User;
