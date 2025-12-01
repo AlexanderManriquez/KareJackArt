@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const CommentController = require('../controllers/comment.controller');
+const CommentController = require('../controllers/api/comment.api.controller');
 const authMiddleware = require('../middlewares/authMiddleware');
 const adminMiddleware = require('../middlewares/adminMiddleware');
 

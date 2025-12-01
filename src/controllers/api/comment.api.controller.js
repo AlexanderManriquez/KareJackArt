@@ -1,4 +1,4 @@
-const CommentService = require('../services/comment.service');
+const CommentService = require('../../services/comment.service');
 
 class CommentController {
   static async createComment(req, res) {

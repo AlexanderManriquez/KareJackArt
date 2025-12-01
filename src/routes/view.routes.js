@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const ViewController = require('../controllers/view.controller');
-const authMiddleware = require('../middlewares/auth.middleware');
-const { adminMiddleware } = require('../middlewares/admin.middleware');
+const authMiddleware = require('../middlewares/authMiddleware');
+const adminMiddleware = require('../middlewares/adminMiddleware');
 
 //Sitio público
 router.get('/', ViewController.home);

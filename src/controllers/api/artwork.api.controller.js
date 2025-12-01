@@ -1,4 +1,4 @@
-const ArtworkService = require('../services/artwork.service');
+const ArtworkService = require('../../services/artwork.service');
 
 class ArtworkController {
   static async createArtwork(req, res) {
