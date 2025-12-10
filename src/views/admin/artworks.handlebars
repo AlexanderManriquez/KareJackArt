@@ -1,0 +1,90 @@
+<div class="admin-artworks">
+  <h1>Crear nueva obra</h1>
+
+  <div id="message" style="margin-bottom:12px;color:green"></div>
+
+  <form id="artworkForm" enctype="multipart/form-data">
+    <div>
+      <label for="title">Título</label>
+      <input type="text" id="title" name="title" required />
+    </div>
+
+    <div>
+      <label for="slug">Slug (opcional)</label>
+      <input type="text" id="slug" name="slug" />
+    </div>
+
+    <div>
+      <label for="description">Descripción</label>
+      <textarea id="description" name="description" rows="4"></textarea>
+    </div>
+
+    <div>
+      <label for="dimensions">Dimensiones</label>
+      <input type="text" id="dimensions" name="dimensions" />
+    </div>
+
+    <div>
+      <label for="year">Año</label>
+      <input type="number" id="year" name="year" />
+    </div>
+
+    <div>
+      <label for="isFeatured">Destacar</label>
+      <input type="checkbox" id="isFeatured" name="isFeatured" />
+    </div>
+
+    <div>
+      <label for="image">Imagen</label>
+      <input type="file" id="image" name="image" accept="image/*" required />
+    </div>
+
+    <div style="margin-top:12px;">
+      <button type="submit">Crear obra</button>
+    </div>
+  </form>
+
+  <script>
+    (function () {
+      const form = document.getElementById('artworkForm');
+      const message = document.getElementById('message');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        message.style.color = 'black';
+        message.textContent = 'Subiendo...';
+
+        const fd = new FormData(form);
+
+        // If token stored in localStorage, add Authorization header
+        const token = localStorage.getItem('token');
+
+        const headers = {};
+        if (token) headers['Authorization'] = 'Bearer ' + token;
+
+        try {
+          const res = await fetch('/api/artworks', {
+            method: 'POST',
+            body: fd,
+            headers,
+            credentials: 'include',
+          });
+
+          const json = await res.json();
+          if (!res.ok) {
+            message.style.color = 'red';
+            message.textContent = json.error || 'Error al crear obra';
+            return;
+          }
+
+          message.style.color = 'green';
+          message.textContent = 'Obra creada correctamente.';
+          form.reset();
+        } catch (err) {
+          message.style.color = 'red';
+          message.textContent = err.message || 'Error de red';
+        }
+      });
+    })();
+  </script>
+</div>
