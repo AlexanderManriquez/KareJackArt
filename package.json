@@ -4,7 +4,8 @@
   "description": "A portfolio website for Kare Jack Art.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "Alexander Manriquez",
@@ -13,8 +14,10 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.8.0",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-handlebars": "^8.0.2",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.2",
     "pg": "^8.16.3",

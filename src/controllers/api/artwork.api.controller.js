@@ -15,6 +15,8 @@ function slugify(text) {
 class ArtworkController {
   static async createArtwork(req, res) {
     try {
+      console.log('createArtwork called, has file?', !!req.file, 'body keys:', Object.keys(req.body));
+      console.log('Headers content-type:', req.headers['content-type']);
       const { title, description, dimensions, year, isFeatured } = req.body;
 
       // Handle image upload if file present
@@ -44,8 +46,10 @@ class ArtworkController {
 
       const artwork = await ArtworkService.createArtwork(data);
 
+      console.log('Artwork created:', artwork.id);
       res.status(201).json(artwork);
     } catch (error) {
+      console.error('createArtwork error:', error);
       res.status(400).json({ error: error.message });
     }
   }
