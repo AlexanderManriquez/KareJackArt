@@ -1,0 +1,118 @@
+/* Styles for auth forms (login/register/forgot) */
+.auth-panel {
+  max-width: 520px;
+  margin: 48px auto;
+  padding: 28px;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(15, 23, 32, 0.06);
+}
+.auth-panel h1 {
+  font-size: 22px;
+  margin: 0 0 12px;
+  color: var(--accent);
+}
+.form-row {
+  margin-bottom: 14px;
+}
+.form-row label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 14px;
+}
+.form-row input[type="email"],
+.form-row input[type="password"],
+.form-row input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e6e9ef;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.form-row input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(3, 31, 107, 0.06);
+  border-color: var(--accent);
+}
+.form-row .cta {
+  display: inline-block;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.form-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.form-links a {
+  color: var(--accent);
+  font-size: 14px;
+}
+#login-error {
+  margin-top: 12px;
+  color: #8b1e3f;
+  background: #fff0f2;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #f2c6d0;
+}
+/* spinner */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.18s linear, transform 0.18s linear;
+}
+.spinner.visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* style logout button inside navbar: buttons may not inherit anchor styles */
+.nav-links button.cta {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.nav-links button.cta.disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.cta.disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+@media (max-width: 480px) {
+  .auth-panel {
+    margin: 20px;
+    padding: 18px;
+  }
+  .form-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

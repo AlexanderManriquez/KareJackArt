@@ -52,16 +52,36 @@ class AuthController {
 
       const { user, token } = await AuthService.login(email, password);
 
-      return res.json({
-        message: 'Inicio de sesión exitoso',
-        token,
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-        },
-      });
+      // Set HttpOnly cookie for server-side session (JWT)
+      const cookieOptions = {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 60 * 60 * 1000, // 1 hour
+      };
+      res.cookie('token', token, cookieOptions);
+
+      // Determine redirect target based on role
+      const redirectUrl = (user.role === 'admin') ? '/admin/artworks' : '/profile';
+
+      // If request is AJAX/JSON, return JSON payload; otherwise perform server-side redirect
+      const isAjax = req.xhr || req.get('X-Requested-With') === 'XMLHttpRequest' || (req.get('Accept') && req.get('Accept').includes('application/json'));
+
+      if (isAjax) {
+        return res.json({
+          message: 'Inicio de sesión exitoso',
+          token,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          },
+          redirect: redirectUrl,
+        });
+      }
+
+      return res.redirect(redirectUrl);
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
@@ -100,6 +120,19 @@ class AuthController {
       });
     } catch (error) {
       return res.status(400).json({ error: error.message });
+    }
+  }
+
+  static async logout(req, res) {
+    try {
+      // Clear cookie
+      res.clearCookie('token', { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' });
+      // If AJAX expect JSON, otherwise redirect home
+      const isAjax = req.xhr || req.get('X-Requested-With') === 'XMLHttpRequest' || (req.get('Accept') && req.get('Accept').includes('application/json'));
+      if (isAjax) return res.json({ message: 'Sesión cerrada' });
+      return res.redirect('/');
+    } catch (error) {
+      return res.status(500).json({ error: 'No se pudo cerrar la sesión' });
     }
   }
 }

@@ -5,7 +5,17 @@
       <a href="/">Inicio</a>
       <a href="/gallery">Galería</a>
       <a href="/about">Acerca</a>
-      <a href="/login" class="cta" aria-label="Iniciar sesión">Iniciar sesión</a>
+      {{#if currentUser}}
+        <a href="/admin/dashboard">Dashboard</a>
+        <form id="logout-form" action="/api/auth/logout" method="post" style="display:inline;">
+          <button type="submit" class="cta" id="logout-button" aria-label="Cerrar sesión">
+            <span class="btn-text">Cerrar sesión</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+      {{else}}
+        <a href="/login" class="cta" aria-label="Iniciar sesión">Iniciar sesión</a>
+      {{/if}}
     </nav>
   </div>
 </header>

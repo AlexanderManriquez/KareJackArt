@@ -17,6 +17,29 @@ app.use((req, res, next) => {
   next();
 });
 
+// Populate current user (if any) into res.locals so templates can render auth state safely
+const jwt = require('jsonwebtoken');
+const { User } = require('./models');
+app.use(async (req, res, next) => {
+  try {
+    const cookieHeader = req.headers.cookie || '';
+    const match = cookieHeader.split(';').map(p=>p.trim()).find(p=>p.startsWith('token='));
+    if (!match) return next();
+    const token = decodeURIComponent(match.split('=')[1]);
+    if (!token) return next();
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded || !decoded.id) return next();
+    const user = await User.findByPk(decoded.id);
+    if (!user) return next();
+    res.locals.currentUser = user.toJSON ? user.toJSON() : user;
+    req.currentUser = user;
+    next();
+  } catch (e) {
+    // don't break requests if token invalid; just continue unauthenticated
+    next();
+  }
+});
+
 //Configuración de Handlebars
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
