@@ -1,0 +1,22 @@
+[
+  {
+    "image": "IMG001.jpg",
+    "title": "Atardecer en la playa",
+    "slug": "atardecer-en-la-playa",
+    "description": "Óleo sobre lienzo. Una escena tranquila de atardecer con tonos cálidos.",
+    "dimensions": "50x70 cm",
+    "year": 2021,
+    "isFeatured": true,
+    "createdBy": 1
+  },
+  {
+    "image": "IMG002.jpg",
+    "title": "Rincón urbano",
+    "slug": "rincon-urbano",
+    "description": "Acuarela que captura un rincón de la ciudad con luces y sombras.",
+    "dimensions": "30x40 cm",
+    "year": 2019,
+    "isFeatured": false,
+    "createdBy": 1
+  }
+]

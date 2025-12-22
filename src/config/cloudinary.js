@@ -20,9 +20,10 @@ if (!cfg.cloud_name) {
   }
 }
 
-function uploadBuffer(buffer, folder = 'karejackart') {
+function uploadBuffer(buffer, folder = 'karejackart', options = {}) {
   return new Promise((resolve, reject) => {
-    const stream = cloudinary.uploader.upload_stream({ folder }, (error, result) => {
+    const opts = Object.assign({ folder }, options || {});
+    const stream = cloudinary.uploader.upload_stream(opts, (error, result) => {
       if (error) return reject(error);
       resolve(result);
     });
