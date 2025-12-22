@@ -130,13 +130,17 @@ async function run() {
       } else {
         const uploadOpts = { folder: 'karejackart/artworks' };
         if (opts.webp) {
-          // Force webp conversion
+          // Force webp conversion and request stored format as webp
           uploadOpts.transformation = [{ format: 'webp', quality: 'auto' }];
+          uploadOpts.format = 'webp';
         } else {
           uploadOpts.transformation = [{ fetch_format: 'auto', quality: 'auto' }];
         }
         uploadRes = await uploadBuffer(buffer, uploadOpts.folder, uploadOpts);
         console.log('  -> subido:', uploadRes.secure_url);
+        if (uploadRes && uploadRes.format) {
+          console.log('  -> formato devuelto por Cloudinary:', uploadRes.format);
+        }
       }
     } catch (err) {
       console.error('  -> Subida fallida:', err.message || err);

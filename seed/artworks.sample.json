@@ -1,22 +1,142 @@
 [
   {
-    "image": "IMG001.jpg",
-    "title": "Atardecer en la playa",
-    "slug": "atardecer-en-la-playa",
-    "description": "Óleo sobre lienzo. Una escena tranquila de atardecer con tonos cálidos.",
-    "dimensions": "50x70 cm",
+    "image": "abuelo.jpg",
+    "title": "Retrato a la experiencia",
+    "slug": "retrato-a-la-experiencia",
+    "description": "Retrato de un adulto mayor que refleja la experiencia adquirida a través de los años. Lapiz gráfito en papel.",
+    "dimensions": "40x60 cm",
+    "year": 2023,
+    "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "baobabs.jpg",
+    "title": "Baobabs",
+    "slug": "baobabs",
+    "description": "Los baobabs son árboles 'El Principito'. Gigantes y peligrosos que simbolizan las amenazas, malos hábitos o problemas. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2022,
+    "isFeatured": true,
+    "createdBy": 1
+  },
+  {
+    "image": "chica-light.jpg",
+    "title": "Chica Light",
+    "slug": "chica-light",
+    "description": "Se representa a una chica meditando acerca de su futuro, con exppresión relajada y distentida. Técnica mixta sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2024,
+    "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "chris-cornell.jpg",
+    "title": "Homenaje",
+    "slug": "chris-cornell",
+    "description": "Retrato en homenaje a Chris Cornell. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2021,
+    "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "colibri.jpg",
+    "title": "Colibri",
+    "slug": "colibri",
+    "description": "Colibrí colorido con sol de fondo, reflejan energía en la naturaleza. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
     "year": 2021,
     "isFeatured": true,
     "createdBy": 1
   },
   {
-    "image": "IMG002.jpg",
-    "title": "Rincón urbano",
-    "slug": "rincon-urbano",
-    "description": "Acuarela que captura un rincón de la ciudad con luces y sombras.",
-    "dimensions": "30x40 cm",
-    "year": 2019,
+    "image": "hoja-otonal.jpg",
+    "title": "Otoño",
+    "slug": "otono",
+    "description": "Una hoja de otoño que representa la fragilidad ante los cambios. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2025,
     "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "hoja-puntillismo.jpg",
+    "title": "Hoja Oscura",
+    "slug": "hoja-oscura",
+    "description": "Hoja en puntillismo con color negro. Lapiz gráfito sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2025,
+    "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "kurokami-no-bi.jpg",
+    "title": "Kurokami No Bi",
+    "slug": "kurokami-no-bi",
+    "description": "Retrato de chica con rasgos orientales, cabello negro y traje rojo. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2025,
+    "isFeatured": true,
+    "createdBy": 1
+  },
+  {
+    "image": "mariposa.jpg",
+    "title": "Mariposa",
+    "slug": "mariposa",
+    "description": "Una mariposa buscando su alimento en su entorno natural. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2023,
+    "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "mariposa-puntillismo.jpg",
+    "title": "Mariposa en punto",
+    "slug": "mariposa-puntillismo",
+    "description": "Una mariposa con tonos blancos y negro en técnica puntillismo. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2023,
+    "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "martin.jpg",
+    "title": "Retrato infantil",
+    "slug": "retrato-infantil",
+    "description": "En este retrato se ve un niño sonriente. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2024,
+    "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "morgan.jpg",
+    "title": "Hombre Libre",
+    "slug": "morgan",
+    "description": "Un retrato que homenajea al reconocido actor Morgan Freeman. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2025,
+    "isFeatured": false,
+    "createdBy": 1
+  },
+  {
+    "image": "mujer-en-colores.jpg",
+    "title": "Colores",
+    "slug": "mujer-en-colores",
+    "description": "Un rostro femenino inspirado en el arcoiris. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2022,
+    "isFeatured": true,
+    "createdBy": 1
+  },
+  {
+    "image": "mujer-en-colores.jpg",
+    "title": "Colores",
+    "slug": "mujer-en-colores",
+    "description": "Un rostro femenino inspirado en el arcoiris. Acuarela sobre papel.",
+    "dimensions": "40x60 cm",
+    "year": 2022,
+    "isFeatured": true,
     "createdBy": 1
   }
 ]

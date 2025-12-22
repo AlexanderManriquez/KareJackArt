@@ -1,0 +1,74 @@
+[
+  {
+    "file": "abuelo.jpg",
+    "ok": true,
+    "artworkId": 15
+  },
+  {
+    "file": "baobabs.jpg",
+    "ok": true,
+    "artworkId": 16
+  },
+  {
+    "file": "chica-light.jpg",
+    "ok": true,
+    "artworkId": 17
+  },
+  {
+    "file": "chris-cornell.jpg",
+    "ok": true,
+    "artworkId": 18
+  },
+  {
+    "file": "colibri.jpg",
+    "ok": true,
+    "artworkId": 19
+  },
+  {
+    "file": "hoja-otonal.jpg",
+    "ok": true,
+    "artworkId": 20
+  },
+  {
+    "file": "hoja-puntillismo.jpg",
+    "ok": true,
+    "artworkId": 21
+  },
+  {
+    "file": "kurokami-no-bi.jpg",
+    "ok": true,
+    "artworkId": 22
+  },
+  {
+    "file": "mariposa.jpg",
+    "ok": true,
+    "artworkId": 23
+  },
+  {
+    "file": "mariposa-puntillismo.jpg",
+    "ok": true,
+    "artworkId": 24
+  },
+  {
+    "file": "martin.jpg",
+    "ok": true,
+    "artworkId": 25
+  },
+  {
+    "file": "morgan.jpg",
+    "ok": true,
+    "artworkId": 26
+  },
+  {
+    "file": "mujer-en-colores.jpg",
+    "ok": true,
+    "artworkId": 27
+  },
+  {
+    "file": "mujer-en-colores.jpg",
+    "ok": false,
+    "skipped": true,
+    "reason": "exists",
+    "artworkId": 27
+  }
+]
