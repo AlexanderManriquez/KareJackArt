@@ -11,6 +11,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Make current year available to all views to avoid unsafe client-side replacements
+app.use((req, res, next) => {
+  res.locals.year = new Date().getFullYear();
+  next();
+});
+
 //Configuración de Handlebars
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
