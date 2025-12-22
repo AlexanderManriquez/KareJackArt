@@ -5,7 +5,7 @@
   --card: #ffffff;
   --text: #0f1720; /* dark */
   --muted: #6b7280;
-  --accent: #2757b7; /* accessible blue */
+  --accent: #031f6b; /* unified primary */
   --accent-strong: #031f6b;
   --radius: 10px;
 }
@@ -48,7 +48,7 @@ main {
 .brand {
   font-weight: 700;
   font-size: 20px;
-  color: var(--text);
+  color: var(--accent);
 }
 .nav-links {
   display: flex;
@@ -101,3 +101,6 @@ main {
     font-size: 18px;
   }
 }
+
+/* unify headings color for brand consistency */
+h1, h2, h3 { color: var(--accent); }

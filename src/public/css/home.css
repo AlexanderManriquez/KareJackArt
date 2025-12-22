@@ -2,7 +2,7 @@
   --bg: #fafafa;
   --text: #111;
   --muted: #666;
-  --accent: #222;
+  --accent: #031f6b;
 }
 body {
   background: var(--bg);

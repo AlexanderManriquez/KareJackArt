@@ -7,6 +7,7 @@ const adminMiddleware = require('../middlewares/adminMiddleware');
 //Sitio público
 router.get('/', ViewController.home);
 router.get('/gallery', ViewController.gallery);
+router.get('/about', ViewController.about);
 router.get('/artwork/:slug', ViewController.artworkDetail);
 //Autenticación
 router.get('/login', ViewController.login);

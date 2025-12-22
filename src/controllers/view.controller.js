@@ -4,6 +4,7 @@ const ViewController = {
   home: (req, res) => ArtworkViewController.renderHome(req, res),
   gallery: (req, res) => ArtworkViewController.renderGallery(req, res),
   artworkDetail: (req, res) => ArtworkViewController.renderSingleArtwork(req, res),
+  about: (req, res) => res.render('public/about', { pageClass: 'about' }),
 
   // Auth views (simple renders — templates should exist under views/)
   login: (req, res) => res.render('auth/login'),
