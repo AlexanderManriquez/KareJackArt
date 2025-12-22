@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/gallery.css">
+<div class="gallery-page">
+  <header class="gallery-header">
+    <h1>Galería</h1>
+    <p class="lead">Explora todas las obras. Haz click en una obra para ver más detalles.</p>
+  </header>
+
+  {{#if artworks}}
+    <section class="gallery-grid" role="list" aria-live="polite">
+      {{#each artworks}}
+        <article class="artwork-card" role="listitem">
+          <a href="/artwork/{{slug}}" class="artwork-link" data-ajax="artwork" aria-labelledby="title-{{id}}" aria-label="Ver detalles: {{title}}">
+            <div class="artwork-thumb">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="{{imageUrl}}" alt="{{title}}" class="lazy" loading="lazy"/>
+            </div>
+            <div class="artwork-meta">
+              <h3 id="title-{{id}}">{{title}}</h3>
+              {{#if year}}<span class="meta-year">{{year}}</span>{{/if}}
+              {{#if dimensions}}<span class="meta-dim"> · {{dimensions}}</span>{{/if}}
+            </div>
+          </a>
+        </article>
+      {{/each}}
+    </section>
+    <div id="gallery-status" class="visually-hidden" role="status" aria-live="polite"></div>
+  {{else}}
+    <p>No hay obras para mostrar.</p>
+  {{/if}}
+
+  <script src="/js/gallery.js" defer></script>
+</div>

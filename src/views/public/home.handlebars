@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="/css/home.css">
+<div class="home-hero">
+
+  <div class="hero-title-wrap">
+    <h1 class="hero-title">Kare Jack Art</h1>
+  </div>
+
+
+  <section class="carousel" aria-roledescription="carousel">
+    {{#if featured}}
+      <div class="slides">
+        {{#each featured}}
+          <div class="slide {{#if @first}}active{{/if}}">
+            <img src="{{imageUrl}}" alt="{{title}}" loading="{{#if @first}}eager{{else}}lazy{{/if}}" />
+          </div>
+        {{/each}}
+      </div>
+      <div class="carousel-cta">
+        <a href="/gallery" class="cta-link">Ver más</a>
+      </div>
+    {{else}}
+      <p>No hay obras destacadas para mostrar.</p>
+    {{/if}}
+  </section>
+</div>
+
+<section class="intro">
+  <div class="container">
+    <h3>Bienvenid@ a Kare Jack Art</h3>
+    <p>Explora una selección curada de obras en acuarela y grafito. Esta exhibición muestra las piezas destacadas.</p>
+  </div>
+</section>
+
+<script src="/js/home.js" defer></script>

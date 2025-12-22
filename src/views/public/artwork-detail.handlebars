@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/css/gallery.css">
+<div class="artwork-detail-page">
+  <a href="/gallery" class="back-link" data-ajax="gallery">← Volver a la galería</a>
+
+  <main class="artwork-detail">
+    <div class="detail-media">
+      <img src="{{artwork.imageUrl}}" alt="{{artwork.title}}" loading="eager">
+    </div>
+    <div class="detail-meta">
+      <h1>{{artwork.title}}</h1>
+      {{#if artwork.year}}<p class="muted">Año: {{artwork.year}}</p>{{/if}}
+      {{#if artwork.dimensions}}<p class="muted">Dimensiones: {{artwork.dimensions}}</p>{{/if}}
+      <div class="description">{{{artwork.description}}}</div>
+    </div>
+  </main>
+
+  <script src="/js/gallery.js" defer></script>
+</div>

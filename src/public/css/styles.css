@@ -5,8 +5,8 @@
   --card: #ffffff;
   --text: #0f1720; /* dark */
   --muted: #6b7280;
-  --accent: #0b5cff; /* accessible blue */
-  --accent-strong: #0737b9;
+  --accent: #2757b7; /* accessible blue */
+  --accent-strong: #031f6b;
   --radius: 10px;
 }
 * {
