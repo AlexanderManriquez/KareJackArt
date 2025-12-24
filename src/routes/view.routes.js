@@ -12,6 +12,8 @@ router.get('/artwork/:slug', ViewController.artworkDetail);
 //Autenticación
 router.get('/login', ViewController.login);
 router.get('/register', ViewController.register);
+router.get('/forgot', ViewController.forgot);
+router.get('/reset-password/:token', ViewController.resetPasswordView);
 //Perfil de usuario (protegido)
 router.get('/profile', authMiddleware, ViewController.userProfile);
 //Panel de administración (protegido)

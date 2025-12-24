@@ -9,6 +9,11 @@ const ViewController = {
   // Auth views (simple renders — templates should exist under views/)
   login: (req, res) => res.render('auth/login'),
   register: (req, res) => res.render('auth/register'),
+  forgot: (req, res) => res.render('auth/forgot'),
+  resetPasswordView: (req, res) => {
+    const token = req.params.token;
+    return res.render('auth/reset-password', { token });
+  },
 
   // User profile
   userProfile: (req, res) => res.render('user/profile'),

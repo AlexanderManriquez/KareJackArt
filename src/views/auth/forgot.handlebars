@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/auth.css">
+
+<main class="container" role="main">
+  <section class="auth-panel" aria-labelledby="forgot-heading">
+    <h1 id="forgot-heading">Recuperar contraseña</h1>
+
+    <form id="forgot-form" action="/api/auth/reset-password/request" method="post" novalidate>
+      <p>Introduce el correo asociado a tu cuenta y te enviaremos un enlace para restablecer la contraseña.</p>
+
+      <div class="form-row">
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" required autocomplete="email" placeholder="tu@correo.com">
+      </div>
+
+      <div class="form-row">
+        <button type="submit" class="cta" id="forgot-submit" aria-live="polite">
+          <span class="btn-text">Enviar enlace</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="form-links">
+        <a href="/login">Volver al inicio</a>
+      </div>
+
+      <div id="forgot-error" class="visually-hidden" role="alert" aria-live="assertive"></div>
+    </form>
+  </section>
+</main>
+
+<script src="/js/auth.js" defer></script>
