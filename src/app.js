@@ -3,11 +3,35 @@ const path = require('path');
 const { engine } = require('express-handlebars');
 const cors = require('cors');
 require('dotenv').config();
+const helmet = require('helmet');
 
 const app = express();
 
 //Middlewares base
-app.use(cors());
+// Basic security headers with a permissive CSP that allows known CDNs and local assets
+const cspDirectives = {
+  defaultSrc: ["'self'"],
+  scriptSrc: ["'self'"],
+  styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com', 'https:'],
+  styleSrcElem: ["'self'", 'https://fonts.googleapis.com', 'https:'],
+  fontSrc: ["'self'", 'https://fonts.gstatic.com', 'https:'],
+  imgSrc: ["'self'", 'data:', 'blob:', 'https://res.cloudinary.com', 'https:'],
+  connectSrc: ["'self'"],
+};
+
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: cspDirectives,
+  },
+}));
+
+// CORS: allow a configured origin in production, otherwise default to permissive for dev
+const corsOrigin = process.env.CORS_ORIGIN || false;
+if (corsOrigin) {
+  app.use(cors({ origin: corsOrigin, credentials: true }));
+} else {
+  app.use(cors());
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
