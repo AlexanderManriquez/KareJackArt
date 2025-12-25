@@ -1,0 +1,11 @@
+<section class="auth-page">
+  <h1>Acceso denegado</h1>
+  <p>No tienes permisos suficientes para acceder a esta página.</p>
+  {{#if currentUser}}
+    <p>Usuario: <strong>{{currentUser.name}}</strong></p>
+    <a class="btn" href="/">Volver al inicio</a>
+  {{else}}
+    <p>Inicia sesión con una cuenta con privilegios de administrador para acceder.</p>
+    <a class="btn" href="/login">Iniciar sesión</a>
+  {{/if}}
+</section>

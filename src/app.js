@@ -44,6 +44,7 @@ app.use((req, res, next) => {
 // Populate current user (if any) into res.locals so templates can render auth state safely
 const jwt = require('jsonwebtoken');
 const { User } = require('./models');
+const crypto = require('crypto');
 app.use(async (req, res, next) => {
   try {
     const cookieHeader = req.headers.cookie || '';
@@ -55,7 +56,19 @@ app.use(async (req, res, next) => {
     if (!decoded || !decoded.id) return next();
     const user = await User.findByPk(decoded.id);
     if (!user) return next();
-    res.locals.currentUser = user.toJSON ? user.toJSON() : user;
+    const userJson = user.toJSON ? user.toJSON() : user;
+
+    // add helper flags and avatar URL (gravatar fallback)
+    userJson.isAdmin = userJson.role === 'admin';
+    try {
+      const email = (userJson.email || '').trim().toLowerCase();
+      const hash = crypto.createHash('md5').update(email).digest('hex');
+      userJson.avatarUrl = `https://www.gravatar.com/avatar/${hash}?s=64&d=identicon`;
+    } catch (err) {
+      userJson.avatarUrl = '/images/avatar-default.png';
+    }
+
+    res.locals.currentUser = userJson;
     req.currentUser = user;
     req.user = user;
     next();

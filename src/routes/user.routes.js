@@ -6,7 +6,8 @@ const adminMiddleware = require('../middlewares/adminMiddleware');
 
 //Rutas para la gestión de usuarios
 router.get('/me', authMiddleware, UserController.getProfile);
-router.put('/me', authMiddleware, UserController.updateProfile);
+const upload = require('../middlewares/uploadMiddleware');
+router.put('/me', authMiddleware, upload.single('avatar'), UserController.updateProfile);
 router.get('/admin/users', authMiddleware, adminMiddleware, UserController.getAllUsers);
 router.delete('/admin/users/:id', authMiddleware, adminMiddleware, UserController.deleteUser);
 

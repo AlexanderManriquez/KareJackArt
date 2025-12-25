@@ -8,7 +8,10 @@
 
   function showMessage(text, color='black'){
     if(!message) return;
-    message.style.color = color;
+    message.classList.remove('admin-message--error','admin-message--success','admin-message--info');
+    if (color === 'red') message.classList.add('admin-message--error');
+    else if (color === 'green') message.classList.add('admin-message--success');
+    else message.classList.add('admin-message--info');
     message.textContent = text;
   }
 
@@ -33,7 +36,7 @@
       return;
     }
     const rows = items.map(a => {
-      const thumb = `<img src="${a.imageUrl}" alt="${a.title}" style="width:60px;height:60px;object-fit:cover;border-radius:6px">`;
+      const thumb = `<img class="thumb-small" src="${a.imageUrl}" alt="${a.title}">`;
       return `
         <tr data-id="${a.id}">
           <td>${thumb}</td>

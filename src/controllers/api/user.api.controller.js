@@ -54,7 +54,21 @@ class UserController {
   
   static async updateProfile(req, res) {
     try {
-      const updated = await UserService.updateUser(req.user.id, req.body);
+      const updates = Object.assign({}, req.body || {});
+      // If a file was uploaded, upload to Cloudinary and set avatarUrl
+      if (req.file && req.file.buffer) {
+        const { uploadBuffer } = require('../../config/cloudinary');
+        try {
+          const uploadRes = await uploadBuffer(req.file.buffer, 'avatars', { folder: 'karejackart/avatars', transformation: [{ width: 400, height: 400, crop: 'limit' }] });
+          if (uploadRes && uploadRes.secure_url) {
+            updates.avatarUrl = uploadRes.secure_url;
+          }
+        } catch (uErr) {
+          console.error('Avatar upload failed', uErr);
+        }
+      }
+
+      const updated = await UserService.updateUser(req.user.id, updates);
       res.json({
         message: 'Perfil actualizado correctamente',
         updated

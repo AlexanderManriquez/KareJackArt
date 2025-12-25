@@ -1,0 +1,25 @@
+<div class="container user-profile">
+  <section class="profile-card">
+    <form id="profileForm" enctype="multipart/form-data">
+      <img class="profile-avatar" src="{{currentUser.avatarUrl}}" alt="Avatar de {{currentUser.name}}" width="96" height="96">
+      <h1>{{currentUser.name}}</h1>
+      <p>{{currentUser.email}}</p>
+      <p>Rol: <strong>{{currentUser.role}}</strong></p>
+
+      <div class="mt-12">
+        <label for="name">Nombre</label>
+        <input id="name" name="name" type="text" value="{{currentUser.name}}" />
+      </div>
+      <div class="mt-8">
+        <label for="avatar">Foto de perfil</label>
+        <input id="avatar" name="avatar" type="file" accept="image/*" />
+      </div>
+      <div class="mt-12">
+        <button type="submit" class="cta">Guardar cambios</button>
+        <a class="btn" href="/">Volver al inicio</a>
+      </div>
+      <div id="profileMessage" aria-live="polite" class="mt-8"></div>
+    </form>
+  </section>
+</div>
+<script src="/js/profile.js" defer></script>
