@@ -88,12 +88,20 @@ class ArtworkController {
   static async updateArtwork(req, res) {
     try {
       const { id } = req.params;
-      const updated = await ArtworkService.updateArtwork(id, req.body);
 
-      res.json({
-        message: 'Obra actualizada correctamente',
-        updated,
-      });
+      const updates = Object.assign({}, req.body || {});
+
+      // Handle possible file upload replacement
+      if (req.file && req.file.buffer) {
+        const uploadRes = await uploadBuffer(req.file.buffer, 'artworks');
+        updates.imageUrl = uploadRes.secure_url;
+      }
+
+      await ArtworkService.updateArtwork(id, updates);
+
+      const updatedArtwork = await ArtworkService.getArtworkById(id);
+
+      res.json({ message: 'Obra actualizada correctamente', updated: updatedArtwork });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }

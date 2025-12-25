@@ -68,6 +68,19 @@ main {
   outline: 3px solid rgba(11, 92, 255, 0.16);
 }
 
+/* ensure logout form sits inline with links */
+.nav-links form {
+  display: inline;
+}
+.nav-links button.cta {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
 /* Footer base (partial has inline styles backup) */
 .site-footer {
   background: transparent;
@@ -133,4 +146,88 @@ h3 {
     rgba(255, 255, 255, 0.02),
     rgba(0, 0, 0, 0.02)
   );
+}
+
+/* Admin dashboard quick links */
+.admin-dashboard {
+  padding: 24px 0;
+}
+.admin-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 12px;
+}
+.admin-links .cta {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Admin artworks form tweaks */
+.admin-artworks {
+  padding: 18px 0;
+}
+.admin-artworks label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.admin-artworks input[type="text"],
+.admin-artworks input[type="number"],
+.admin-artworks textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #e6e6e9;
+  margin-bottom: 12px;
+}
+.admin-artworks .form-actions {
+  margin-top: 12px;
+}
+.admin-artworks #createArtworkBtn {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.admin-artworks .admin-message {
+  margin-bottom: 12px;
+}
+
+/* Modal form (centered) */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 60;
+}
+.modal.show {
+  display: flex;
+}
+.modal-inner {
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  max-width: 720px;
+  width: 92%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+.modal-footer {
+  margin-top: 12px;
+  text-align: right;
+}
+.modal .cta {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
 }

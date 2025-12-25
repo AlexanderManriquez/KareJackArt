@@ -7,7 +7,7 @@
       <a href="/about">Acerca</a>
       {{#if currentUser}}
         <a href="/admin/dashboard">Dashboard</a>
-        <form id="logout-form" action="/api/auth/logout" method="post" style="display:inline;">
+        <form id="logout-form" action="/api/auth/logout" method="post">
           <button type="submit" class="cta" id="logout-button" aria-label="Cerrar sesión">
             <span class="btn-text">Cerrar sesión</span>
             <span class="spinner" aria-hidden="true"></span>

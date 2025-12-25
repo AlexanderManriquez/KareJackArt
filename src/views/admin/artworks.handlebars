@@ -1,9 +1,25 @@
 <div class="admin-artworks">
-  <h1>Crear nueva obra</h1>
+  <h1>Obras</h1>
 
-  <div id="message" style="margin-bottom:12px;color:green"></div>
+  <div class="admin-top">
+    <button id="openCreateForm" class="cta">Crear obra</button>
+    <div id="message" class="admin-message"></div>
+  </div>
 
-  <form id="artworkForm" enctype="multipart/form-data">
+  <table class="artworks-table">
+    <thead>
+      <tr><th>Mini</th><th>Título</th><th>Año</th><th>Slug</th><th>Acciones</th></tr>
+    </thead>
+    <tbody id="artworks-list">
+      <tr><td colspan="5">Cargando...</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Modal form (hidden by default) -->
+  <div id="artwork-form-modal" class="modal">
+    <div class="modal-inner">
+      <h2 id="modal-heading">Crear / Editar obra</h2>
+      <form id="artworkForm" enctype="multipart/form-data">
     <div>
       <label for="title">Título</label>
       <input type="text" id="title" name="title" required />
@@ -36,84 +52,16 @@
 
     <div>
       <label for="image">Imagen</label>
-      <input type="file" id="image" name="image" accept="image/*" required />
+      <input type="file" id="image" name="image" accept="image/*" />
     </div>
 
-    <div style="margin-top:12px;">
-      <button type="button" id="createArtworkBtn" onclick="submitArtwork()">Crear obra</button>
+    <div class="form-actions">
+      <button type="submit" id="createArtworkBtn" class="cta">Guardar</button>
     </div>
-  </form>
+      </form>
+      <div class="modal-footer"><button type="button" id="closeModal" class="cta">Cerrar</button></div>
+    </div>
+  </div>
 
-  <script>
-      console.log('admin/artworks script loaded');
-    (function () {
-      const form = document.getElementById('artworkForm');
-      const message = document.getElementById('message');
-      const btn = document.getElementById('createArtworkBtn');
-
-      async function submitArtwork() {
-        try {
-          message.style.color = 'black';
-          message.textContent = 'Subiendo...';
-
-          // Build FormData manually to ensure file is attached
-          const fd = new FormData();
-          // Append textual fields
-          fd.append('title', document.getElementById('title').value);
-          fd.append('slug', document.getElementById('slug').value);
-          fd.append('description', document.getElementById('description').value);
-          fd.append('dimensions', document.getElementById('dimensions').value);
-          fd.append('year', document.getElementById('year').value);
-          fd.append('isFeatured', document.getElementById('isFeatured').checked ? 'on' : '');
-          // Append file explicitly
-          const fileInput = document.getElementById('image');
-          const file = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
-          if (file) fd.append('image', file, file.name);
-
-          // Debug: log FormData entries
-          for (const pair of fd.entries()) {
-            console.log('FormData entry:', pair[0], pair[1] && pair[1].name ? '(file) ' + pair[1].name : pair[1]);
-          }
-          // If token stored in localStorage, add Authorization header
-          const token = localStorage.getItem('token');
-
-          const headers = {};
-          if (token) headers['Authorization'] = 'Bearer ' + token;
-
-          console.log('Enviando artwork, headers:', headers);
-
-          const res = await fetch('/api/artworks', {
-            method: 'POST',
-            body: fd,
-            headers,
-            credentials: 'include',
-          });
-
-          console.log('Fetch completed, status:', res.status);
-          const contentType = res.headers.get('content-type') || '';
-          const json = contentType.includes('application/json') ? await res.json() : { message: await res.text() };
-          console.log('Response JSON/Text:', json);
-
-          if (!res.ok) {
-            message.style.color = 'red';
-            message.textContent = json.error || json.message || 'Error al crear obra';
-            return;
-          }
-
-          message.style.color = 'green';
-          message.textContent = 'Obra creada correctamente.';
-          form.reset();
-        } catch (err) {
-          console.error('Error al subir artwork:', err);
-          message.style.color = 'red';
-          message.textContent = err.message || 'Error de red';
-        }
-      }
-
-      // Expose globally as a fallback for inline onclick
-      try { window.submitArtwork = submitArtwork; } catch (e) { /* ignore */ }
-
-      btn.addEventListener('click', submitArtwork);
-    })();
-  </script>
+  <script src="/js/admin.artworks.js" defer></script>
 </div>

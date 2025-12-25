@@ -57,6 +57,7 @@ app.use(async (req, res, next) => {
     if (!user) return next();
     res.locals.currentUser = user.toJSON ? user.toJSON() : user;
     req.currentUser = user;
+    req.user = user;
     next();
   } catch (e) {
     // don't break requests if token invalid; just continue unauthenticated
