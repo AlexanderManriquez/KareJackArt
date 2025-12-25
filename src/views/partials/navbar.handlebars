@@ -10,8 +10,10 @@
           <a href="/admin/dashboard">Dashboard</a>
         {{/if}}
         <div class="nav-user">
-          <img class="nav-avatar" src="{{currentUser.avatarUrl}}" alt="Avatar de {{currentUser.name}}" width="32" height="32">
-          <span class="nav-username">{{currentUser.name}}</span>
+          <a href="/profile" class="nav-user-link">
+            <img class="nav-avatar" src="{{currentUser.avatarUrl}}" alt="Avatar de {{currentUser.name}}" width="32" height="32">
+            <span class="nav-username">{{currentUser.name}}</span>
+          </a>
         </div>
         <form id="logout-form" action="/api/auth/logout" method="post">
           <button type="submit" class="cta" id="logout-button" aria-label="Cerrar sesión">

@@ -93,7 +93,8 @@ class AuthController {
         });
       }
 
-      return res.redirect(redirectUrl);
+      // For non-AJAX render a small confirmation page that redirects
+      return res.render('auth/login-success', { user: { name: user.name }, redirect: redirectUrl });
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
@@ -142,10 +143,10 @@ class AuthController {
     try {
       // Clear cookie
       res.clearCookie('token', { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' });
-      // If AJAX expect JSON, otherwise redirect home
+      // If AJAX expect JSON, otherwise render a small logout confirmation and redirect
       const isAjax = req.xhr || req.get('X-Requested-With') === 'XMLHttpRequest' || (req.get('Accept') && req.get('Accept').includes('application/json'));
       if (isAjax) return res.json({ message: 'Sesión cerrada' });
-      return res.redirect('/');
+      return res.render('auth/logout-success');
     } catch (error) {
       return res.status(500).json({ error: 'No se pudo cerrar la sesión' });
     }

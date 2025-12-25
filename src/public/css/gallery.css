@@ -23,23 +23,8 @@
   display: grid;
   gap: var(--gap);
   align-items: stretch;
-}
-/* default: mobile 2 columns */
-.gallery-grid {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (min-width: 600px) {
-  /* tablet: 3 columns */
-  .gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (min-width: 1000px) {
-  /* desktop: 4-5 columns depending on width - prefer 5 for wide screens */
-  .gallery-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
+  /* Use responsive columns that keep items reasonably large: each tile minimum 180px */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 .artwork-card {
@@ -57,11 +42,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Prefer a square thumbnail using aspect-ratio; falls back to min-height for old browsers */
+  aspect-ratio: 1 / 1;
   min-height: 160px;
 }
 .artwork-thumb img {
   width: 100%;
-  height: 220px;
+  height: 100%;
   object-fit: cover;
   display: block;
 }

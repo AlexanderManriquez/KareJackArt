@@ -44,8 +44,8 @@
           <td>${a.year || ''}</td>
           <td>${a.slug}</td>
           <td>
-            <button class="edit-btn">Editar</button>
-            <button class="delete-btn">Eliminar</button>
+            <button class="action-btn primary edit-btn">Editar</button>
+            <button class="action-btn delete-btn">Eliminar</button>
           </td>
         </tr>
       `;

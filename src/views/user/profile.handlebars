@@ -14,6 +14,13 @@
         <label for="avatar">Foto de perfil</label>
         <input id="avatar" name="avatar" type="file" accept="image/*" />
       </div>
+      <div class="mt-8">
+        <label>Usar avatar:</label>
+        <div>
+          <label><input type="radio" name="avatarChoice" value="gravatar" {{#unless currentUser.avatarUrl}}checked{{/unless}}> Gravatar (por email)</label>
+          <label style="margin-left:12px"><input type="radio" name="avatarChoice" value="uploaded" {{#if currentUser.avatarUrl}}checked{{/if}}> Foto subida</label>
+        </div>
+      </div>
       <div class="mt-12">
         <button type="submit" class="cta">Guardar cambios</button>
         <a class="btn" href="/">Volver al inicio</a>

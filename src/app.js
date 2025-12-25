@@ -58,12 +58,16 @@ app.use(async (req, res, next) => {
     if (!user) return next();
     const userJson = user.toJSON ? user.toJSON() : user;
 
-    // add helper flags and avatar URL (gravatar fallback)
+    // add helper flags and avatar URL (prefer stored avatarUrl, fallback to gravatar)
     userJson.isAdmin = userJson.role === 'admin';
     try {
-      const email = (userJson.email || '').trim().toLowerCase();
-      const hash = crypto.createHash('md5').update(email).digest('hex');
-      userJson.avatarUrl = `https://www.gravatar.com/avatar/${hash}?s=64&d=identicon`;
+      if (userJson.avatarUrl) {
+        // already stored (uploaded) avatar URL
+      } else {
+        const email = (userJson.email || '').trim().toLowerCase();
+        const hash = crypto.createHash('md5').update(email).digest('hex');
+        userJson.avatarUrl = `https://www.gravatar.com/avatar/${hash}?s=64&d=identicon`;
+      }
     } catch (err) {
       userJson.avatarUrl = '/images/avatar-default.png';
     }

@@ -55,8 +55,17 @@ class UserController {
   static async updateProfile(req, res) {
     try {
       const updates = Object.assign({}, req.body || {});
-      // If a file was uploaded, upload to Cloudinary and set avatarUrl
+      // Respect avatar choice: if user asked to use Gravatar, clear avatarUrl
+      if (updates.avatarChoice === 'gravatar') {
+        updates.avatarUrl = null;
+      }
+
+      // If a file was uploaded, validate type then upload to Cloudinary and set avatarUrl
       if (req.file && req.file.buffer) {
+        const allowed = ['image/webp', 'image/jpeg', 'image/png'];
+        if (!allowed.includes(req.file.mimetype)) {
+          return res.status(400).json({ error: 'Formato de imagen no permitido. Usa webp, jpg o png.' });
+        }
         const { uploadBuffer } = require('../../config/cloudinary');
         try {
           const uploadRes = await uploadBuffer(req.file.buffer, 'avatars', { folder: 'karejackart/avatars', transformation: [{ width: 400, height: 400, crop: 'limit' }] });
