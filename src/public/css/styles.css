@@ -1,9 +1,9 @@
 /* Global styles and design tokens */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Updock:wght@300;400;600;700&display=swap");
 :root {
-  --bg: #fbfbfc;
+  --bg: #faf2e6;
   --card: #ffffff;
-  --text: #0f1720; /* dark */
+  --text: #54534b; /* dark */
   --muted: #6b7280;
   --accent: #031f6b; /* unified primary */
   --accent-strong: #031f6b;
@@ -18,11 +18,12 @@ body {
 }
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial;
+  font-family: "Updock", cursive;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  font-size: 28px; /* desktop base (updated to 28px) */
+  line-height: 1.7;
 }
 a {
   color: var(--accent);
@@ -47,7 +48,7 @@ main {
 }
 .brand {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 0.79rem; /* ~22px */
   color: var(--accent);
 }
 .nav-links {
@@ -57,7 +58,7 @@ main {
 }
 .nav-links a {
   color: var(--text);
-  padding: 8px 10px;
+  padding: 10px 12px;
   border-radius: 8px;
 }
 .nav-links a.cta {
@@ -115,8 +116,9 @@ main {
   border: 2px solid rgba(0, 0, 0, 0.06);
 }
 .nav-username {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text);
+  font-size: 0.64rem; /* ~18px */
 }
 
 /* Footer base (partial has inline styles backup) */
@@ -149,7 +151,19 @@ main {
     gap: 10px;
   }
   .brand {
-    font-size: 18px;
+    font-size: 1rem;
+  }
+  body {
+    font-size: 18px; /* mobile base */
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 20px;
   }
 }
 
@@ -160,12 +174,41 @@ h3 {
   color: var(--accent);
 }
 
+/* Typography scale */
+h1 {
+  font-size: 64px; /* scaled up for base 28px */
+  line-height: 1.04;
+}
+h2 {
+  font-size: 48px;
+  line-height: 1.12;
+}
+h3 {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+p,
+li,
+a,
+button,
+input,
+label {
+  font-size: 0.857rem; /* ~24px */
+}
+.muted,
+.site-footer,
+small {
+  font-size: 0.571rem; /* ~16px */
+  color: var(--muted);
+}
+
 /* Footer styles moved from partial to avoid CSP inline-style blocking */
 .site-footer {
   padding: 14px 20px;
   background: transparent;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 .site-footer .footer-inner {
   max-width: 1100px;
@@ -211,7 +254,8 @@ h3 {
 .admin-artworks label {
   display: block;
   margin-bottom: 6px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 16px;
 }
 .thumb-small {
   width: 56px;
@@ -276,6 +320,188 @@ main {
   margin: 0 auto;
 }
 
+/* Home page full viewport layout and styles */
+:root {
+  --header-height: 72px;
+  --footer-height: 64px;
+}
+
+/* fix header/footer to edges and give main spacing so home fills viewport */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  background: rgba(250, 242, 230, 0.98);
+}
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
+}
+
+main {
+  padding-top: calc(var(--header-height) + 5px);
+  padding-bottom: calc(var(--footer-height) + 5px);
+}
+
+.home-content {
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  display: flex;
+  flex-direction: column;
+}
+
+.home-top,
+.home-bottom {
+  flex: 1 1 50%;
+  min-height: 0; /* allow flex children to shrink properly */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-top {
+  gap: 32px;
+}
+.home-artwork {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-slogan {
+  flex: 1;
+}
+.home-slogan h1 {
+  font-size: 64px;
+  line-height: 1.04;
+  margin: 0;
+  font-weight: 700;
+}
+
+.circle-frame {
+  width: min(40vw, 420px);
+  height: min(40vw, 420px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px; /* smaller border */
+  background: radial-gradient(
+    circle at center,
+    rgba(3, 31, 107, 0.08),
+    rgba(3, 31, 107, 0.02)
+  );
+  box-shadow: 0 6px 18px rgba(3, 31, 107, 0.04) inset;
+  overflow: hidden;
+}
+.circle-frame img {
+  width: 72%;
+  height: 72%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.home-bottom {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-around;
+  padding: 12px 0;
+}
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 32%;
+  background: transparent;
+  text-decoration: none;
+  color: var(--text);
+}
+.category-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  max-height: 180px;
+  object-fit: cover;
+}
+.category-card span {
+  margin-top: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+@media (max-width: 900px) {
+  .home-top {
+    flex-direction: column-reverse;
+    gap: 18px;
+    padding: 12px;
+  }
+  .home-slogan h1 {
+    font-size: 34px;
+    text-align: center;
+  }
+  .home-bottom {
+    flex-direction: column;
+    padding: 18px 0;
+  }
+  .category-card {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .circle-frame {
+    width: 64vw;
+    height: 64vw;
+  }
+}
+
+/* Mobile typography adjustments */
+@media (max-width: 900px) {
+  body {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 22px;
+  }
+  p,
+  li,
+  a,
+  button,
+  input,
+  label {
+    font-size: 16px;
+  }
+}
+
+/* Make home page occupy full viewport and avoid scroll overflow */
+.home-page {
+  height: 100vh;
+  overflow: hidden;
+}
+.home-page .container {
+  max-width: 1020px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 /* admin artworks table styles */
 .admin-top {
   display: flex;
@@ -338,7 +564,7 @@ button,
 .btn,
 a.btn {
   display: inline-block;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid transparent;
   background: transparent;
@@ -380,7 +606,7 @@ button.secondary,
 }
 .modal-inner {
   background: #fff;
-  padding: 18px;
+  padding: 20px;
   border-radius: 10px;
   max-width: 720px;
   width: 92%;

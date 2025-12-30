@@ -10,7 +10,6 @@
   padding: 0 16px;
 }
 .gallery-header h1 {
-  font-size: 28px;
   margin: 0 0 6px;
   color: var(--accent);
 }
@@ -57,12 +56,12 @@
 }
 .artwork-meta h3 {
   margin: 0;
-  font-size: 15px;
+  font-size: 1.1rem;
 }
 .artwork-meta .meta-year,
 .artwork-meta .meta-dim {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 0.9rem;
   margin-left: 6px;
 }
 

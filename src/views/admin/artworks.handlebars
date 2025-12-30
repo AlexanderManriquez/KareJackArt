@@ -9,7 +9,7 @@
 
   <table class="artworks-table">
     <thead>
-      <tr><th>Mini</th><th>Título</th><th>Año</th><th>Slug</th><th>Acciones</th></tr>
+      <tr><th>Mini</th><th>Título</th><th>Categoría</th><th>Año</th><th>Slug</th><th>Acciones</th></tr>
     </thead>
     <tbody id="artworks-list">
       <tr><td colspan="5">Cargando...</td></tr>
@@ -44,6 +44,16 @@
     <div>
       <label for="year">Año</label>
       <input type="number" id="year" name="year" />
+    </div>
+
+    <div>
+      <label for="category">Categoría</label>
+      <select id="category" name="category" required>
+        <option value="">-- Selecciona --</option>
+        <option value="Retratos">Retratos</option>
+        <option value="Acuarelas">Acuarelas</option>
+        <option value="Puntillismo">Puntillismo</option>
+      </select>
     </div>
 
     <div>

@@ -41,6 +41,7 @@
         <tr data-id="${a.id}">
           <td>${thumb}</td>
           <td>${a.title}</td>
+          <td>${a.category || ''}</td>
           <td>${a.year || ''}</td>
           <td>${a.slug}</td>
           <td>
@@ -95,6 +96,7 @@
     form.dimensions.value = art.dimensions || '';
     form.year.value = art.year || '';
     form.isFeatured.checked = !!art.isFeatured;
+    if (form.category) form.category.value = art.category || '';
   }
 
   function showFormModal(show){

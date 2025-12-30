@@ -1,34 +1,46 @@
-<link rel="stylesheet" href="/css/home.css">
-<div class="home-hero">
-
-  <div class="hero-title-wrap">
-    <h1 class="hero-title">Kare Jack Art</h1>
-  </div>
-
-
-  <section class="carousel" aria-roledescription="carousel">
-    {{#if featured}}
-      <div class="slides">
-        {{#each featured}}
-          <div class="slide {{#if @first}}active{{/if}}">
-            <img src="{{imageUrl}}" alt="{{title}}" loading="{{#if @first}}eager{{else}}lazy{{/if}}" />
+<div class="home-page">
+  <main class="home-content">
+    <section class="home-top container">
+      <div class="home-artwork">
+        {{#if featured}}
+          {{#if featured.[0]}}
+            <div class="circle-frame">
+              <img src="{{featured.[0].imageUrl}}" alt="{{featured.[0].title}}">
+            </div>
+          {{else}}
+            <div class="circle-frame">
+              <img src="/img/placeholder-circle.png" alt="obra destacada">
+            </div>
+          {{/if}}
+        {{else}}
+          <div class="circle-frame">
+            <img src="/img/placeholder-circle.png" alt="obra destacada">
           </div>
-        {{/each}}
+        {{/if}}
       </div>
-      <div class="carousel-cta">
-        <a href="/gallery" class="cta-link">Ver más</a>
-      </div>
-    {{else}}
-      <p>No hay obras destacadas para mostrar.</p>
-    {{/if}}
-  </section>
-</div>
 
-<section class="intro">
-  <div class="container">
-    <h3>Bienvenid@ a Kare Jack Art</h3>
-    <p>Explora una selección curada de obras en acuarela y grafito. Esta exhibición muestra las piezas destacadas.</p>
-  </div>
-</section>
+      <div class="home-slogan">
+        <h1>De la mente al corazón,<br>del corazón al pincel</h1>
+      </div>
+    </section>
+
+    <section class="home-bottom container">
+      <a class="category-card" href="/gallery?category=Retratos" aria-label="Ver Retratos">
+        <img src="https://via.placeholder.com/260?text=Retratos" alt="Retratos">
+        <h3>Retratos</h3>
+      </a>
+
+      <a class="category-card" href="/gallery?category=Acuarelas" aria-label="Ver Acuarelas">
+        <img src="https://via.placeholder.com/260?text=Acuarelas" alt="Acuarelas">
+        <h3>Acuarelas</h3>
+      </a>
+
+      <a class="category-card" href="/gallery?category=Puntillismo" aria-label="Ver Puntillismo">
+        <img src="https://via.placeholder.com/260?text=Puntillismo" alt="Puntillismo">
+        <h3>Puntillismo</h3>
+      </a>
+    </section>
+  </main>
+</div>
 
 <script src="/js/home.js" defer></script>

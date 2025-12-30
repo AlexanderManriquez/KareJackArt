@@ -17,7 +17,7 @@ class ArtworkController {
     try {
       console.log('createArtwork called, has file?', !!req.file, 'body keys:', Object.keys(req.body));
       console.log('Headers content-type:', req.headers['content-type']);
-      const { title, description, dimensions, year, isFeatured } = req.body;
+      const { title, description, dimensions, year, isFeatured, category } = req.body;
 
       // Handle image upload if file present
       let imageUrl = req.body.imageUrl || null;
@@ -40,6 +40,7 @@ class ArtworkController {
         year: year ? Number(year) : null,
         imageUrl,
         isFeatured: isFeatured === 'on' || isFeatured === true || isFeatured === 'true',
+        category: category || 'Sin categoría',
         slug,
         createdBy: req.user && req.user.id ? req.user.id : null,
       };
@@ -95,6 +96,11 @@ class ArtworkController {
       if (req.file && req.file.buffer) {
         const uploadRes = await uploadBuffer(req.file.buffer, 'artworks');
         updates.imageUrl = uploadRes.secure_url;
+      }
+
+      // ensure boolean/values processed correctly
+      if (typeof updates.isFeatured !== 'undefined') {
+        updates.isFeatured = updates.isFeatured === 'on' || updates.isFeatured === 'true' || updates.isFeatured === true;
       }
 
       await ArtworkService.updateArtwork(id, updates);

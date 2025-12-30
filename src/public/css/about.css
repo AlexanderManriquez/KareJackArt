@@ -29,7 +29,7 @@
   color: var(--accent);
 }
 .about-text .lead {
-  font-size: 18px;
+  font-size: 1.05rem;
   margin-bottom: 12px;
 }
 .about-text h2 {

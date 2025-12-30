@@ -36,6 +36,11 @@ const Artwork = sequelize.define('Artwork', {
       notEmpty: true,
     }
   },
+  category: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+    defaultValue: 'Sin categoría',
+  },
   isFeatured: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,

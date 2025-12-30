@@ -6,6 +6,7 @@ const createArtworkValidators = [
   body('dimensions').optional({ checkFalsy: true }).isLength({ max: 100 }).withMessage('Dimensiones demasiado largas'),
   body('year').optional({ checkFalsy: true }).isInt({ min: 1000, max: 9999 }).withMessage('Año inválido'),
   body('slug').optional({ checkFalsy: true }).isSlug().withMessage('Slug inválido'),
+  body('category').trim().notEmpty().withMessage('La categoría es requerida').isIn(['Retratos','Acuarelas','Puntillismo']).withMessage('Categoría inválida'),
 ];
 
 const updateArtworkValidators = [
@@ -14,6 +15,7 @@ const updateArtworkValidators = [
   body('dimensions').optional({ checkFalsy: true }).isLength({ max: 100 }).withMessage('Dimensiones demasiado largas'),
   body('year').optional({ checkFalsy: true }).isInt({ min: 1000, max: 9999 }).withMessage('Año inválido'),
   body('slug').optional({ checkFalsy: true }).isSlug().withMessage('Slug inválido'),
+  body('category').optional({ checkFalsy: true }).trim().isIn(['Retratos','Acuarelas','Puntillismo']).withMessage('Categoría inválida'),
 ];
 
 module.exports = {
