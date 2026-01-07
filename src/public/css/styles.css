@@ -1,5 +1,6 @@
 /* Global styles and design tokens */
-@import url("https://fonts.googleapis.com/css2?family=Updock:wght@300;400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Updock&display=swap');
+
 :root {
   --bg: #faf2e6;
   --card: #ffffff;
@@ -18,7 +19,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: "Updock", cursive;
+  font-family: "Great Vibes", cursive;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -35,7 +36,7 @@ main {
 
 /* Navbar partial styles */
 .site-header {
-  background: transparent;
+  background: #D8C7F8;
   padding: 18px 0;
 }
 .nav-inner {
@@ -123,7 +124,7 @@ main {
 
 /* Footer base (partial has inline styles backup) */
 .site-footer {
-  background: transparent;
+  background: #D8C7F8;
   padding: 18px 0;
   color: var(--muted);
 }
@@ -222,12 +223,11 @@ small {
   margin-left: 12px;
 }
 .site-footer.home {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(0, 0, 0, 0.02)
-  );
+  background: #D8C7F8;
 }
+
+/* Home styles were moved to /css/home.css (modular, mobile-first). */
+/* Keep home-specific rules in that file to avoid conflicts. */
 
 /* Admin dashboard quick links */
 .admin-dashboard {
@@ -336,7 +336,7 @@ main {
   z-index: 1000;
   display: flex;
   align-items: center;
-  background: rgba(250, 242, 230, 0.98);
+  background: #D8C7F8;
 }
 .site-footer {
   position: fixed;
@@ -346,161 +346,27 @@ main {
   height: var(--footer-height);
   display: flex;
   align-items: center;
+  background: #D8C7F8;
 }
 
-main {
-  padding-top: calc(var(--header-height) + 5px);
-  padding-bottom: calc(var(--footer-height) + 5px);
-}
-
-.home-content {
-  min-height: calc(100vh - var(--header-height) - var(--footer-height));
-  display: flex;
-  flex-direction: column;
-}
-
-.home-top,
-.home-bottom {
-  flex: 1 1 50%;
-  min-height: 0; /* allow flex children to shrink properly */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-top {
-  gap: 32px;
-}
-.home-artwork {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.home-slogan {
-  flex: 1;
-}
-.home-slogan h1 {
-  font-size: 64px;
-  line-height: 1.04;
-  margin: 0;
-  font-weight: 700;
-}
-
-.circle-frame {
-  width: min(40vw, 420px);
-  height: min(40vw, 420px);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px; /* smaller border */
-  background: radial-gradient(
-    circle at center,
-    rgba(3, 31, 107, 0.08),
-    rgba(3, 31, 107, 0.02)
-  );
-  box-shadow: 0 6px 18px rgba(3, 31, 107, 0.04) inset;
-  overflow: hidden;
-}
-.circle-frame img {
-  width: 72%;
-  height: 72%;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-}
-
-.home-bottom {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-around;
-  padding: 12px 0;
-}
-.category-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 32%;
-  background: transparent;
-  text-decoration: none;
-  color: var(--text);
-}
-.category-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  max-height: 180px;
-  object-fit: cover;
-}
-.category-card span {
-  margin-top: 12px;
-  font-weight: 700;
-  color: var(--accent);
-  font-size: 20px;
-}
-
-@media (max-width: 900px) {
-  .home-top {
-    flex-direction: column-reverse;
-    gap: 18px;
-    padding: 12px;
-  }
-  .home-slogan h1 {
-    font-size: 34px;
-    text-align: center;
-  }
-  .home-bottom {
-    flex-direction: column;
-    padding: 18px 0;
-  }
-  .category-card {
-    width: 100%;
-    margin-bottom: 12px;
-  }
-  .circle-frame {
-    width: 64vw;
-    height: 64vw;
+/* Wider layout on medium and larger devices to reduce overly-centered look */
+@media (min-width: 768px) {
+  .nav-inner,
+  .container,
+  .site-footer .footer-inner,
+  main {
+    max-width: 1400px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
-/* Mobile typography adjustments */
-@media (max-width: 900px) {
-  body {
-    font-size: 18px;
-    line-height: 1.6;
-  }
-  h1 {
-    font-size: 40px;
-  }
-  h2 {
-    font-size: 30px;
-  }
-  h3 {
-    font-size: 22px;
-  }
-  p,
-  li,
-  a,
-  button,
-  input,
-  label {
-    font-size: 16px;
-  }
-}
+/* Home responsive and layout rules were moved to /css/home.css to keep styles modular. */
 
-/* Make home page occupy full viewport and avoid scroll overflow */
-.home-page {
-  height: 100vh;
-  overflow: hidden;
-}
-.home-page .container {
-  max-width: 1020px;
-  padding-left: 12px;
-  padding-right: 12px;
-}
+/* Home layout and card styles moved into /css/home.css (modular). */
+/* Generic card styles remain in home.css to avoid collisions. */
 
 /* admin artworks table styles */
 .admin-top {
@@ -623,3 +489,5 @@ button.secondary,
   border-radius: 8px;
   border: none;
 }
+
+/* Home overrides and height-aware tweaks moved to /css/home.css */
