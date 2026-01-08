@@ -5,40 +5,68 @@
         {{#if featured}}
           {{#if featured.[0]}}
             <div class="circle-frame">
-              <img src="{{featured.[0].imageUrl}}" alt="{{featured.[0].title}}">
+              <img src="{{featured.[0].imageUrl}}" alt="{{featured.[0].title}}" />
             </div>
           {{else}}
             <div class="circle-frame">
-              <img src="/img/placeholder-circle.png" alt="obra destacada">
+              <img src="/img/placeholder-circle.png" alt="obra destacada" />
             </div>
           {{/if}}
         {{else}}
           <div class="circle-frame">
-            <img src="/img/placeholder-circle.png" alt="obra destacada">
+            <img src="/img/placeholder-circle.png" alt="obra destacada" />
           </div>
         {{/if}}
       </div>
 
       <div class="home-slogan">
-        <h1>De la mente al corazón,<br>del corazón al pincel</h1>
+        <h1>De la mente al corazón,<br />del corazón al pincel</h1>
       </div>
     </section>
 
     <section class="home-bottom container">
-      <a class="category-card" href="/gallery?category=Retratos" aria-label="Ver Retratos">
-        <div class="thumb"><img src="/img/retratos.webp" alt="Retratos"></div>
-        <h3>Retratos</h3>
-      </a>
+      <div class="round-container">
+        <a
+          class="category-card"
+          href="/gallery?category=Retratos"
+          aria-label="Ver Retratos"
+        >
+          <div class="thumb"><img
+              src="/img/retratos.webp"
+              alt="Retratos"
+            /></div>
+          <h3>Retratos</h3>
+        </a>
+      </div>
 
-      <a class="category-card" href="/gallery?category=Acuarelas" aria-label="Ver Acuarelas">
-        <div class="thumb"><img src="/img/acuarelas.webp" alt="Acuarelas"></div>
-        <h3>Acuarelas</h3>
-      </a>
+      <div class="round-container">
+        <a
+          class="category-card"
+          href="/gallery?category=Acuarelas"
+          aria-label="Ver Acuarelas"
+        >
+          <div class="thumb"><img
+              src="/img/acuarelas.webp"
+              alt="Acuarelas"
+            /></div>
+          <h3>Acuarelas</h3>
+        </a>
+      </div>
 
-      <a class="category-card" href="/gallery?category=Puntillismo" aria-label="Ver Puntillismo">
-        <div class="thumb"><img src="/img/puntillismo.webp" alt="Puntillismo"></div>
-        <h3>Puntillismo</h3>
-      </a>
+      <div class="round-container">
+        <a
+          class="category-card"
+          href="/gallery?category=Puntillismo"
+          aria-label="Ver Puntillismo"
+        >
+          <div class="thumb"><img
+              src="/img/puntillismo.webp"
+              alt="Puntillismo"
+            /></div>
+          <h3>Puntillismo</h3>
+        </a>
+      </div>
+
     </section>
   </main>
 </div>

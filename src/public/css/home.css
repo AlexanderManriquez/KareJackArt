@@ -4,14 +4,32 @@ body.home {
   --header-h: 64px;
   --footer-h: 56px;
   --gutter: 16px;
-  --card-min: 160px;
+  --card-min: 140px;
+  --nav-bg: #D8C7F8; /* same as .site-header */
   margin: 0;
+  overflow: hidden; /* remove page scroll on home */
+}
+
+/* Fix navbar and footer only on home page */
+body.home .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+}
+body.home .site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
 }
 
 /* Ensure main area fits between header/footer, allow scrolling on small heights */
 body.home main {
   min-height: calc(100vh - var(--header-h) - var(--footer-h));
-  padding-top: calc(var(--header-h) + 8px);
+  padding-top: calc(var(--header-h) - 24px);
   padding-bottom: calc(var(--footer-h) + 8px);
 }
 
@@ -43,7 +61,7 @@ body.home main {
   justify-content: center;
   background: radial-gradient(circle at center, rgba(3,31,107,0.06), rgba(3,31,107,0.02));
 }
-.circle-frame img { width: 92%; height: 92%; object-fit: cover; display:block; }
+.circle-frame img { width: 92%; height: 92%; object-fit: cover; display:block; border-radius: 50%;}
 
 .home-slogan { width: 100%; text-align: center; }
 .home-slogan h1 { font-size: clamp(22px, 5vw, 34px); line-height: 1.04; margin: 0; }
@@ -53,13 +71,27 @@ body.home main {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--card-min), 1fr));
-  gap: 12px;
-  padding: 8px var(--gutter) 28px;
+  gap: 10px;
+  padding: 6px var(--gutter) 18px;
   justify-items: center;
 }
-.category-card { width: 100%; max-width: 360px; }
-.category-card .thumb { aspect-ratio: 4/3; border-radius: 10px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-.category-card .thumb img { width: 86%; height: auto; object-fit: contain; display:block; }
+
+.round-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: var(--nav-bg);
+  border-radius: 50%;
+  border: 1px transparent solid;
+  /* make container approximately square based on card min-size */
+  width: calc(var(--card-min) + 24px);
+  height: calc(var(--card-min) + 24px);
+  overflow: hidden;
+}
+.category-card { width: 100%; max-width: 260px; }
+.category-card .thumb { aspect-ratio: 1/1; border-radius: 50%; overflow:hidden; display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+.category-card .thumb img { width: 100%; height: 100%; object-fit: cover; display:block; }
 .category-card h3 { text-align:center; margin-top:8px; }
 
 /* Medium screens: hero becomes two-column layout */
@@ -91,5 +123,11 @@ body.home main {
   body.home main { min-height: auto; }
   .circle-frame { width: min(44vw, 260px); height: min(44vw, 260px); }
   .home-slogan h1 { font-size: 22px; }
+  body.home { overflow: hidden; }
+}
+
+/* Allow vertical scroll on narrow or short screens so content isn't clipped */
+@media (max-width: 630px), (max-height: 675px) {
   body.home { overflow-y: auto; }
+  body.home main { min-height: auto; padding-top: calc(var(--header-h) - 24px); padding-bottom: calc(var(--footer-h) + 8px); }
 }
