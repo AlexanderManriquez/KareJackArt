@@ -8,6 +8,27 @@ body.home {
   --nav-bg: #D8C7F8; /* same as .site-header */
   margin: 0;
   overflow: hidden; /* remove page scroll on home */
+  /* place background image on the full page area (behind header/footer) */
+  background-image: url('/img/bg-main.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* On large screens show the whole image so corners are visible */
+@media (min-width: 1200px) {
+  body.home {
+       /* scale image height slightly smaller than available space so the
+         decorative leaves at corners are fully visible without being
+         clipped by viewport edges; adjust vertical offset below header */
+       background-size: auto calc(100vh - var(--header-h) - var(--footer-h) - 48px);
+       /* shift down a bit so top leaves clear the fixed header */
+       background-position: center calc(var(--header-h) + 24px);
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
 }
 
 /* Fix navbar and footer only on home page */
@@ -33,6 +54,7 @@ body.home main {
   min-height: calc(100vh - var(--header-h) - var(--footer-h));
   padding-top: calc(var(--header-h) - 24px);
   padding-bottom: calc(var(--footer-h) + 8px);
+  background: transparent;
 }
 
 .home-content {
